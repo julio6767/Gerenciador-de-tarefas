@@ -28,13 +28,31 @@
 				        </form>
 
                 <?php
-				if	(array_key_exists('nome',	$_GET))	{
-								echo "Nome	informado:	"	.	$_GET['nome'];
-				}
-                 /*  olaaa guerreiros */
- 	                ?>
 
-				
+					$lista_tarefas = [];
+				if	(array_key_exists('nome',	$_GET))	{
+								$lista_tarefas[] = $_GET['nome'];
+				}
+
+			
+                ?>
+
+				<table>
+
+					<tr>
+						<th>Tarefas</th>
+					</tr>
+
+						<?php foreach ($lista_tarefas as $tarefa) :?>
+
+							<tr>
+								<td><?php echo $tarefa ;?></td>
+							</tr>
+
+					<?php endforeach;?>
+
+				</table>
+
 
 
 				</body>
