@@ -31,10 +31,10 @@
 				if	(array_key_exists('nome',	$_GET))	{
 								echo "Nome	informado:	"	.	$_GET['nome'];
 				}
-                
-                ?>
+                 /*  olaaa guerreiros */
+ 	                ?>
 
-
+				
 
 
 				</body>
