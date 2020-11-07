@@ -1,0 +1,38 @@
+h1 {
+    text-align: center;
+}
+
+.tarefa-input {
+  display: flex;
+ 
+  width: 100%;
+ 
+ 
+  
+}
+
+ .descriçao-textarea {
+    display: block;
+    width: 100%;
+    
+}
+
+.prazo-input{
+    display: block;
+    width: 100%;
+    
+}
+
+div {
+    
+   
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    
+
+  
+    }
+
+   

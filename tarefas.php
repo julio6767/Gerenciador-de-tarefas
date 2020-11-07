@@ -1,69 +1,52 @@
-<?php session_start();?>
-
-<html>
+<?php session_start();
 
 
 
+				
 
+$lista_tarefas=[];
 
-				<head>
-						<title>Gerenciador	de	Tarefas</title>
-				</head>
-
-
-
-				<body>
-
-					<h1>Gerenciador	de	Tarefas</h1>
-
-
-
-						<form>
-								<fieldset>
-												<legend>Nova	tarefa</legend>
-												<label>
-                                                		Tarefa:
-																<input	type="text" name="nome"	/>
-												</label>
-												<input	type="submit" value="Cadastrar"	/>
-								</fieldset>
-				        </form>
-
-                <?php
-
-					$lista_tarefas = [];
-				if	(array_key_exists('nome',	$_GET))	{
-							$_SESSION	['lista_tarefas'] [] = $_GET['nome'];
-				}
 					
-					$lista_tarefas = [];
+				if	(array_key_exists('nome', $_GET) && $_GET['nome'] !='')	{
+							$tarefa = [];
+							$tarefa['nome'] = $_GET['nome'];
+				
+							
+						
 
-				if (array_key_exists('lista_tarefas', $_SESSION)) {
+				if (array_key_exists('descriçao', $_GET)) {
 
-					$lista_tarefas = $_SESSION ['lista_tarefas'];
+					$tarefa ['descriçao'] = $_GET ['descriçao'];
+
+				}else {
+					$tarefa['descriçao'] = '';
 				}
+
+				if (array_key_exists('prazo',$_GET)) {
+
+					$tarefa['prazo'] = $_GET['prazo'];
+
+				} else{
+					$tarefa['prazo'] = '';
+				}
+
+				$tarefa ['prioridade'] = $_GET['prioridade'];
+
+				if (array_key_exists('concluida', $_GET)){
+					$tarefa['concluida'] = $_GET['concluida'];
+
+				} else {
+					$tarefa['concluida'] = '';	
+
+					
+				}
+
+				 $_SESSION['lista_tarefas'][]	= $tarefa;
+				 $lista_tarefas = $_SESSION ['lista_tarefas'];
+			}
+				
+
+			include "template.php";
 			
                 ?>
 
-				<table>
-
-					<tr>
-						<th>Tarefas</th>
-					</tr>
-
-						<?php foreach ($lista_tarefas as $tarefa) :?>
-
-							<tr>
-								<td><?php echo $tarefa ;?></td>
-							</tr>
-
-					<?php endforeach;?>
-
-				</table>
-
-
-
-				</body>
-
-
-				</html>
