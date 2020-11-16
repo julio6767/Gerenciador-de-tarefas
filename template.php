@@ -13,7 +13,9 @@
 
 
 				<body>
-
+  
+                   
+                
 					<h1>Gerenciador	de	Tarefas</h1>
 
 
@@ -25,7 +27,7 @@
 
 												<label>
                                                 		Tarefa:
-																<input class="tarefa-input"	type="text" name="nome"	/>
+																<input 	type="text" name="nome"	/>
 												</label>
 											
 
@@ -33,14 +35,14 @@
 
                                                 Descrição:
 
-                                                    <textarea class="descriçao-textarea" name="descriçao"></textarea>
+                                                    <textarea  name="descriçao"></textarea>
                                                 
                                                 </label>
 
                                                 <label>
                                                     Prazo:
 
-                                                        <input class="prazo-input" type="text" name="prazo">
+                                                        <input  type="text" name="prazo">
                                                 
                                                 </label>
 
@@ -48,14 +50,14 @@
                                                         <legend>Prioridade:</legend>
 
                                                             <label>
-                                                                <input type="radio" name="prioridade" value="baixa"
+                                                                <input type="radio" name="prioridade" value="1"
                                                                 checked>Baixa
 
 
-                                                                <input type="radio" name="prioridade" value="media">
+                                                                <input type="radio" name="prioridade" value="2">
                                                                 Media
 
-                                                                <input type="radio" name="prioridade" value="alta">
+                                                                <input type="radio" name="prioridade" value="3">
                                                                 Alta
 
                                                             </label>
@@ -94,8 +96,8 @@
                                 <tr>
                                     <td><?php echo $tarefa ['nome'];?></td>
                                     <td><?php echo $tarefa ['descriçao'];?></td>
-                                    <td><?php echo $tarefa ['prazo'];?></td>
-                                    <td><?php echo $tarefa ['prioridade'];?></td>
+                                    <td><?php echo traduz_data_para_exibir ($tarefa ['prazo']);?></td>
+                                    <td><?php echo traduz_prioridade ($tarefa ['prioridade']);?></td>
                                     <td><?php echo $tarefa  ['concluida'];?></td>
                                 </tr>
 

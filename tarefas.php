@@ -1,15 +1,23 @@
 <?php session_start();
+require "banco.php";
+require "ajudante.php";
+
 
 
 
 				
 
-$lista_tarefas=[];
+
+				
+
 
 					
-				if	(array_key_exists('nome', $_GET) && $_GET['nome'] !='')	{
+				if	(array_key_exists('nome', $_GET) && ($_GET['nome'] !=''))	{
 							$tarefa = [];
 							$tarefa['nome'] = $_GET['nome'];
+							
+						
+							
 				
 							
 						
@@ -24,7 +32,7 @@ $lista_tarefas=[];
 
 				if (array_key_exists('prazo',$_GET)) {
 
-					$tarefa['prazo'] = $_GET['prazo'];
+					$tarefa['prazo'] = traduz_data_para_banco($_GET['prazo']);
 
 				} else{
 					$tarefa['prazo'] = '';
@@ -40,13 +48,32 @@ $lista_tarefas=[];
 
 					
 				}
-
-				 $_SESSION['lista_tarefas'][]	= $tarefa;
-				 $lista_tarefas = $_SESSION ['lista_tarefas'];
-			}
 				
 
+				gravar_tarefa ($conexao, $tarefa);
+				
+			
+			
+			
+			}
+	
+			$lista_tarefas = buscar_tarefas($conexao);
+			
+			
+			
+			
+
+			
+			
+			
+
 			include "template.php";
+
+			
+				
+			
+			
+			
 			
                 ?>
 
