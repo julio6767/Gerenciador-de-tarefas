@@ -3,7 +3,7 @@
 $bdServidor = 'sql3.freemysqlhosting.net';
 $bdUsuario = 'sql3380025';
 $bdSenha = 'QfQEhxKHkc';
-$bdBanco = 'tarefas';
+$bdBanco = '3306';
 
  
 $conexao = mysqli_connect ($bdServidor,$bdUsuario,$bdSenha,$bdBanco);
