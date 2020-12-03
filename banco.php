@@ -1,8 +1,8 @@
 <?php 
 
-$bdServidor = '127.0.0.1';
-$bdUsuario = 'sistematarefas';
-$bdSenha = '6767';
+$bdServidor = 'sql3.freemysqlhosting.net';
+$bdUsuario = 'sql3380025';
+$bdSenha = 'QfQEhxKHkc';
 $bdBanco = 'tarefas';
 
  
@@ -71,7 +71,7 @@ WHERE	id	=	{$tarefa['id']}
 
     mysqli_query($conexao,$sqlEditar);
 
-    header('Location:	tarefas.php');
+    header('Location:	index.php');
     die();
 
  
