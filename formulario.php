@@ -8,7 +8,7 @@
 
                         <label>
                                 Tarefa:
-                                        <input 	type="text" name="nome"	value="<?php echo $tarefa['nome'] ; ?>"/>
+                                        <input 	type="text" name="nome"	value="<?php echo $tarefa['nome'] ; ?>" required/>
                         </label>
                     
 
@@ -16,14 +16,14 @@
 
                         Descrição:
 
-                            <textarea  name="descricao"><?php echo $tarefa['descricao'] ; ?></textarea>
+                            <textarea  name="descricao" required><?php echo $tarefa['descricao'] ; ?></textarea>
                         
                         </label>
 
                         <label>
                             Prazo:
 
-                                <input  type="text" name="prazo"  value="<?php echo traduz_data_para_exibir($tarefa['prazo']) ; ?>">
+                                <input  type="text" name="prazo"  value="<?php echo traduz_data_para_exibir($tarefa['prazo']) ; ?>" required>
                         
                         </label>
 
