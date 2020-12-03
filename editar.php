@@ -1,27 +1,24 @@
-<?php session_start();
+<?php 
+
+session_start();
 require "banco.php";
 require "ajudante.php";
 
-$exibir_tabela = true;
+
+$exibir_tabela = false;
 
 
-
-
-				
-
-
-				
 
 
 					
 				if	(array_key_exists('nome', $_GET) && ($_GET['nome'] !=''))	{
 							$tarefa = [];
+
+							$tarefa['id']	=	$_GET['id'];
+
 							$tarefa['nome'] = $_GET['nome'];
 							
-						
-							
 				
-							
 						
 
 				if (array_key_exists('descricao', $_GET)) {
@@ -49,43 +46,28 @@ $exibir_tabela = true;
 					$tarefa['concluida'] = '';	
 
 					
-				}
+                }
+                
+				editar_tarefa($conexao,$tarefa);
+				
+				
+				
 				
 
-				gravar_tarefa ($conexao, $tarefa);
-				header('Location:	tarefas.php');
-				die();
-				
-				
-			
-			
+
 			
 			}
 	
-			$lista_tarefas = buscar_tarefas($conexao);
+         
+            
+            $tarefa	=	buscar_tarefa($conexao,	$_GET['id']);
 			
 			
-			
-			
-
-			
-			$tarefa = [
-				'id' 			=> 0,
-				'nome' 			=> '',
-				'descricao' 	=> '',
-				'prazo' 		=> '',
-				'prioridade'    => 1,
-				'concluida' 	=> ''
-			];
-			
+	
 
 			include "template.php";
+			
 
-			
-				
-			
-			
-			
-			
+		
                 ?>
 
