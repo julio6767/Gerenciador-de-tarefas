@@ -53,7 +53,7 @@ $exibir_tabela = true;
 				
 
 				gravar_tarefa ($conexao, $tarefa);
-				header('Location:	tarefas.php');
+				header('Location:	index.php');
 				die();
 				
 				
