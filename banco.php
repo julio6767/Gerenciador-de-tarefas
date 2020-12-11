@@ -1,9 +1,9 @@
 <?php 
 
-$bdServidor = 'sql3.freemysqlhosting.net';
-$bdUsuario = 'sql3380025';
-$bdSenha = 'QfQEhxKHkc';
-$bdBanco = 'sql3380025';
+$bdServidor = '127.0.0.1';
+$bdUsuario = 'root';
+$bdSenha = '';
+$bdBanco = 'tarefas';
 
  
 $conexao = mysqli_connect ($bdServidor,$bdUsuario,$bdSenha,$bdBanco);

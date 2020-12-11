@@ -8,7 +8,14 @@
 
                         <label>
                                 Tarefa:
-                                        <input 	type="text" name="nome"	value="<?php echo $tarefa['nome'] ; ?>" required/>
+                                <?php 
+                                    if ($tem_erros && array_key_exists ('nome', $erros_validacao)) : ?>
+                                        <span class="erro">
+                                            <?php echo $erros_validacao['nome'] ;?>
+                                        </span>
+                                        <?php endif ;?>
+                                
+                                        <input 	type="text" name="nome"	value="<?php echo $tarefa['nome'] ; ?>" />
                         </label>
                     
 
@@ -16,14 +23,14 @@
 
                         Descrição:
 
-                            <textarea  name="descricao" required><?php echo $tarefa['descricao'] ; ?></textarea>
+                            <textarea  name="descricao" ><?php echo $tarefa['descricao'] ; ?></textarea>
                         
                         </label>
 
                         <label>
                             Prazo:
 
-                                <input  type="text" name="prazo"  value="<?php echo traduz_data_para_exibir($tarefa['prazo']) ; ?>" required>
+                                <input  type="text" name="prazo"  value="<?php echo traduz_data_para_exibir($tarefa['prazo']) ; ?>" >
                         
                         </label>
 

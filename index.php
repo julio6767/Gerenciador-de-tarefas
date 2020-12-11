@@ -4,7 +4,8 @@ require "ajudante.php";
 
 $exibir_tabela = true;
 
-
+$tem_erros = false;
+$erros_validacao = [];
 
 
 				
@@ -14,9 +15,23 @@ $exibir_tabela = true;
 
 
 					
-				if	(array_key_exists('nome', $_GET) && ($_GET['nome'] !=''))	{
+			if (tem_post())	{
+
+				/*verificar	se	o	nome	está	no		POST		e	se	a
+					contagem	de	caracteres	é maior	do	que	zero*/
+
 							$tarefa = [];
-							$tarefa['nome'] = $_GET['nome'];
+
+							if (array_key_exists('nome',$_POST) && strlen($_POST['nome'] > 0 )) {
+								$tarefa['nome'] = $_POST['nome'];
+							}
+							else {
+								$tem_erros = true ;
+								$erros_validacao ['nome'] = 'o nome da tarefa é obrigatório';
+							}
+							
+
+										
 							
 						
 							
@@ -24,26 +39,26 @@ $exibir_tabela = true;
 							
 						
 
-				if (array_key_exists('descricao', $_GET)) {
+				if (array_key_exists('descricao', $_POST)) {
 
-					$tarefa ['descricao'] = $_GET ['descricao'];
+					$tarefa ['descricao'] = $_POST ['descricao'];
 
 				}else {
 					$tarefa['descricao'] = '';
 				}
 
-				if (array_key_exists('prazo',$_GET)) {
+				if (array_key_exists('prazo',$_POST)) {
 
-					$tarefa['prazo'] = traduz_data_para_banco($_GET['prazo']);
+					$tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
 
 				} else{
 					$tarefa['prazo'] = '';
 				}
 
-				$tarefa ['prioridade'] = $_GET['prioridade'];
+				$tarefa ['prioridade'] = $_POST['prioridade'];
 
-				if (array_key_exists('concluida', $_GET)){
-					$tarefa['concluida'] = $_GET['concluida'];
+				if (array_key_exists('concluida', $_POST)){
+					$tarefa['concluida'] = $_POST['concluida'];
 
 				} else {
 					$tarefa['concluida'] = '';	
@@ -52,10 +67,20 @@ $exibir_tabela = true;
 				}
 				
 
-				gravar_tarefa ($conexao, $tarefa);
-				header('Location:	index.php');
-				die();
+				if (! $tem_erros  ) {
+					/* Caso	 algum	 erro	 exista,	 a	 função	 	gravar_tarefa()		 não
+					será	 chamada,	 e	 o	 arquivo	 	 tarefas.php	 	 continuará	 a	 ser executado*/
+
+					gravar_tarefa($conexao,$tarefa);
+					header('location: index.php');
+					die();
+
+				}
+
 				
+				
+
+			
 				
 			
 			
