@@ -17,7 +17,7 @@ $exibir_tabela = false;
 							$tarefa['id']	=	$_POST['id'];
 
 							$tarefa['nome'] = $_POST['nome'];
-							
+							 
 				
 						
 

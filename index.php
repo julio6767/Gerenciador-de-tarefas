@@ -15,14 +15,19 @@ $erros_validacao = [];
 
 
 					
-			if (tem_post())	{
+			
 
 				/*verificar	se	o	nome	está	no		POST		e	se	a
 					contagem	de	caracteres	é maior	do	que	zero*/
 
-							$tarefa = [];
+							
+							if	(tem_post())	{
 
-							if (array_key_exists('nome',$_POST) && strlen($_POST['nome'] > 0 )) {
+							
+
+							if (array_key_exists('nome',$_POST) && strlen($_POST['nome']) > 0 ) {
+								$tarefa = [];
+
 								$tarefa['nome'] = $_POST['nome'];
 							}
 							else {
@@ -80,12 +85,12 @@ $erros_validacao = [];
 				
 				
 
-			
+							}
 				
 			
 			
 			
-			}
+			
 	
 			$lista_tarefas = buscar_tarefas($conexao);
 			
@@ -94,15 +99,19 @@ $erros_validacao = [];
 			
 
 			
-			$tarefa = [
-				'id' 			=> 0,
-				'nome' 			=> '',
-				'descricao' 	=> '',
-				'prazo' 		=> '',
-				'prioridade'    => 1,
-				'concluida' 	=> ''
-			];
-			
+			$tarefa	=	[
+				'id'									=>	0,
+				'nome'							=>	(array_key_exists('nome',	$_POST))	?
+				$_POST['nome']	:	'',
+				'descricao'		=>	(array_key_exists('descricao',	$_POST))	?
+				$_POST['descricao']	:	'',
+				'prazo'						=>	(array_key_exists('prazo',	$_POST))	?
+												traduz_data_para_banco($_POST['prazo'])	:	'',
+				'prioridade'	=>	(array_key_exists('prioridade',	$_POST))	?
+				$_POST['prioridade']	:	1,
+				'concluida'		=>	(array_key_exists('concluida',	$_POST))	?
+				$_POST['concluida']	:	''
+				];
 
 			include "template.php";
 
