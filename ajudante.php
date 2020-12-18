@@ -60,4 +60,12 @@ function tem_post() {
     return false;
 }
 
+function validar_data ($data) {
+    $padrao = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/';
+    $resultado = preg_match($padrao,$data);
+
+    return ($resultado == 1);
+
+}
+
 ;?>

@@ -52,13 +52,26 @@ $erros_validacao = [];
 					$tarefa['descricao'] = '';
 				}
 
-				if (array_key_exists('prazo',$_POST)) {
+				if (array_key_exists('prazo',$_POST) && strlen($_POST['prazo']) > 0)  {
 
-					$tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
+					if (validar_data($_POST['prazo'])) {
+						$tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
+					}
 
-				} else{
-					$tarefa['prazo'] = '';
+					else {
+						$tem_erros = true;
+						$erros_validacao['prazo'] = 'O prazo não é uma data válida! EX: 00/00/0000';
+					}
 				}
+					else{
+						$tarefa['prazo'] = '';
+					}
+
+					
+
+
+				
+				
 
 				$tarefa ['prioridade'] = $_POST['prioridade'];
 
