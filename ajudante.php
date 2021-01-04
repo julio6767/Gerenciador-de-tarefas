@@ -18,15 +18,20 @@ function traduz_prioridade ($codigo) {
 }
 
 function  traduz_data_para_banco($data) {
+
+   
     if ($data == "") {
         return "";
     }
 
-    $dados = explode("/",$data);
-    $data_banco	=	"{$dados[2]}-{$dados[1]}-{$dados[0]}";
+    $partes	=	explode("/",	$data);
 
-    return $data_banco;
-
+    if (count($partes) != 3) {
+        return $data;
+    }
+    
+    $objeto_data	=	DateTime::createFromFormat('d/m/Y',	$data);
+    return $objeto_data->format('Y-m-d');
 }
 
 function traduz_data_para_exibir ($data) {
@@ -35,10 +40,16 @@ function traduz_data_para_exibir ($data) {
         return "";
     }
 
-    $dados = explode ("-",$data);
-    $data_exibir = "{$dados[2]}/{$dados[1]}/{$dados[0]}";
+    $partes = explode ("-",$data);
 
-    return $data_exibir;
+        if (count($partes) != 3 ) {
+            return $data;
+        }
+    
+    
+    $objeto_data = DateTime::createFromFormat('Y-m-d',$data);
+
+    return $objeto_data->format('d/m/Y');
 
 }
 
@@ -64,7 +75,18 @@ function validar_data ($data) {
     $padrao = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/';
     $resultado = preg_match($padrao,$data);
 
-    return ($resultado == 1);
+    if ($resultado==0) {
+        return false;
+    }
+
+    $dados = explode ('/',$data);
+    $dia = $dados[0];
+    $mes= $dados[1];
+    $ano= $dados[2];
+
+    $resultado = checkdate($mes,$dia,$ano);
+
+    return ($resultado);
 
 }
 
