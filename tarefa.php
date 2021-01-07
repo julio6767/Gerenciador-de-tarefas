@@ -3,7 +3,11 @@ include "banco.php";
 include "ajudante.php";
 $tem_erros	=	false;
 $erros_validacao	=	[];
+
+
+
 if	(tem_post())	{
+		
 				//	upload	dos	anexos
 			$tarefa_id =  $_POST['tarefa_id'];
 
@@ -17,11 +21,11 @@ if	(tem_post())	{
 			$nome = $_FILES['anexo']['name'];
 			$anexo = [
 
-				'$tarefa_id' => $tarefa_id,
-				'nome'=> substr ($nome, 0, -4);
-				'arquivo'=> $nome, 
+				'tarefa_id' => $tarefa_id,
+				'nome'=> substr ($nome, 0, -4),
+				'arquivo'=> $nome,
 			];
-
+		
 			/*
 				"substr()	,	que	pega	trechos de	uma	string." 
 
@@ -32,18 +36,20 @@ if	(tem_post())	{
 				for	algo	como		relatorio.pdf	,	o		.pdf		será	removido	e	ficaremos
 				apenas	com	o	texto		relatorio	 */
 
-			else {
+			
+		}	else {
 				$tem_erros = true;
 				$erros_validacao ['anexo'] = 'Envie anexos nos formatos ZIP ou PDF';
 			}
 		}
 
 		if (! $tem_erros) {
-			gravar_anexo = ($conexao, $anexo);
+			gravar_anexo ($conexao, $anexo);
 		}
 	}
-}
+
 
 
 $tarefa	=	buscar_tarefa($conexao,	$_GET['id']);
+$anexos = buscar_anexos ($conexao,$_GET['id']);
 include "template_tarefa.php";

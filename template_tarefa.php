@@ -23,8 +23,7 @@
 
             <p>
                 <strong>Descrição:</strong>
-                <?php echo 
-                    nl2br($tarefa['descriçao']);?>
+                <?php echo nl2br($tarefa['descricao']);?>
             </p>
 
             <p>
@@ -41,9 +40,47 @@
 
          <h2>Anexos</h2>
             <!-- lista de anexos -->
+
+
+                <!-- verificando	 se	 a	 lista	 de	 anexos	 tem	 algum
+                    índice	 antes	 de	 tentar	 exibir	 a	 lista.	 Cada	 item	 da	 lista	 tem	 um
+                    elemento		a		que	faz	um	link	para	o	download	do	arquivo. -->
+                <?php if (count($anexos) > 0) : ?>
+
+                    <table>
+                        <tr>
+                            <th>Arquivos</th>
+                            <th>Opções</th>
+                        </tr>
+
+                        <?php foreach ($anexos as $anexo) : ?>
+                        <tr>
+                            <td><?php echo $anexo['nome'] ;?></td>
+                            <td>
+                                <a href="anexos/<?php echo $anexo['arquivo'] ;?>">
+                                    Download
+                                </a>
+                            </td>
+
+                        </tr>
+
+                        <?php endforeach;?>
+                        
+                    </table>
+
+                    <?php else :?>
+
+                    <p>Não há anexos para esta tarefa!</p>
+
+                    <?php endif ;?>
+
+                    
+
             <!--	formulário	para	um	novo	anexo	-->
 
-                <form action="" method="post" ecntype="multipart/form-data">
+
+
+                <form action="" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Novo Anexo</legend>
 
