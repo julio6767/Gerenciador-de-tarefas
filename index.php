@@ -1,4 +1,5 @@
 <?php session_start();
+require "config.php";
 require "banco.php";
 require "ajudante.php";
 
@@ -90,10 +91,19 @@ $erros_validacao = [];
 					será	 chamada,	 e	 o	 arquivo	 	 tarefas.php	 	 continuará	 a	 ser executado*/
 
 					gravar_tarefa($conexao,$tarefa);
+
+					if (
+						array_key_exists('lembrete',$_POST)
+						&& $_POST['lembrete'] == '1'
+					){
+						enviar_email($tarefa);
+					}
 					header('location: index.php');
 					die();
 
 				}
+
+				
 
 				
 				

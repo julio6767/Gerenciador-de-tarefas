@@ -78,6 +78,12 @@
                     
                     </label>
 
+                    <label for="">
+                            Lembrete por E-mail:
+                            <input type="checkbox" name="lembrete" value="1">
+                    
+                    </label>
+
                     <input	type="submit" value="<?php echo ($tarefa['id']>0) ? 'Atualizar' : 'Cadastrar' ; ?> "	/>
 
         </fieldset>

@@ -1,12 +1,9 @@
 <?php 
 
-$bdServidor = '127.0.0.1';
-$bdUsuario = 'root';
-$bdSenha = '';
-$bdBanco = 'tarefas';
+
 
  
-$conexao = mysqli_connect ($bdServidor,$bdUsuario,$bdSenha,$bdBanco);
+$conexao = mysqli_connect (BD_SERVIDOR,BD_USUARIO,BD_SENHA,BD_BANCO);
 
 if (mysqli_connect_errno($conexao)) {
     echo "problemas para conectar no banco. Erro:";
@@ -115,6 +112,19 @@ function buscar_anexos ($conexao, $tarefa_id) {
 
         }
     return $anexos;
+}
+
+function buscar_anexo ($conexao , $id) {
+
+    $sql_Busca = "SELECT * FROM anexos WHERE id = " . $id;
+    $resultado = mysqli_query ($conexao, $sql_Busca);
+
+    return mysqli_fetch_assoc($resultado); 
+}
+
+function remover_anexo ($conexao , $id) {
+    $sql_remover = "DELETE FROM anexos WHERE id = {$id}";
+    mysqli_query ($conexao , $sql_remover);
 }
 
 ;?>

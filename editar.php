@@ -1,8 +1,10 @@
 <?php 
 
 session_start();
+require "config.php";
 require "banco.php";
 require "ajudante.php";
+
 
 
 $exibir_tabela = false;
@@ -73,6 +75,13 @@ $erros_validacao = [];
 					será	 chamada,	 e	 o	 arquivo	 	 tarefas.php	 	 continuará	 a	 ser executado*/
 
 					editar_tarefa($conexao,$tarefa);
+					if (
+						array_key_exists('lembrete', $_POST)
+						&& $_POST['lembrete'] == '1'
+					){
+						$anexos = buscar_anexos ($conexao, $tarefa['id']); enviar_email($tarefa, $anexos);
+					}
+
 					header('location: index.php');
 					die();
 

@@ -1,6 +1,10 @@
 <?php
+require "config.php";
 include "banco.php";
 include "ajudante.php";
+
+
+
 $tem_erros	=	false;
 $erros_validacao	=	[];
 
